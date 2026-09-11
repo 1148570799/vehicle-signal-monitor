@@ -147,6 +147,18 @@ ip -details link show vcan0
 - 接入 spdlog、Prometheus 或可视化仪表盘。
 - 增加消息优先级、队列丢弃策略和压力测试。
 
+## CockpitDiag 诊断 Agent
+
+仓库新增 [`cockpit-diag-agent`](cockpit-diag-agent/) 子项目。它使用 Java 21 和
+Spring Boot 接收车辆信号或导入本监控器日志，编排信号检查、日志分析、诊断
+知识检索与测试方案工具，生成带证据、风险等级、置信度和安全边界的诊断报告。
+
+```bash
+cd cockpit-diag-agent
+mvn clean verify
+mvn spring-boot:run
+```
+
 ## License
 
 MIT

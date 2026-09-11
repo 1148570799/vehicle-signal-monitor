@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  linux:
+  cpp:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,3 +15,19 @@ jobs:
         run: cmake --build build --parallel 2
       - name: Test
         run: ctest --test-dir build --output-on-failure
+
+  java-agent:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cockpit-diag-agent
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: cockpit-diag-agent/pom.xml
+      - name: Build and test
+        run: mvn --batch-mode clean verify
